@@ -1,3 +1,3 @@
 # SudokuSolver
 Project 4:
-Creates a Sudodu game
+Creates a Sudoku game
