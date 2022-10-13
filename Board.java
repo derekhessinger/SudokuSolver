@@ -210,7 +210,7 @@ public class Board{
   return true;
   }
 
-  //Check this tomorrow! Use recursion?
+  //Creates n locked values specified by user with random values generated
   public void randomLock(int locked){
 
 
@@ -252,7 +252,6 @@ public class Board{
             //If valid, set invalid to false
             invalid = false;
           }
-
         }
       }
     }
