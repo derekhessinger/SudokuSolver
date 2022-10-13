@@ -275,7 +275,7 @@ public class Board{
             //Create boolean to check if value is valid
             boolean check = this.validValue(i, j, x);
 
-            //
+            //If check is true, set the value to the cell
             if (check == true){
 
               this.set(i, j, x);
