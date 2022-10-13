@@ -184,15 +184,19 @@ public class Board{
   //Checks if the board is solved
   public boolean validSolution(){
 
+    //For loop for rows
     for (int i = 0; i < Board.SIZE; i++){
 
+      //For loop for columns
       for (int j = 0; j < Board.SIZE; j++){
 
+        //Check first to see if any values are 0
         if (this.board[i][j].getValue() == 0){
 
           return false;
         }
 
+        //If the value is not a valid value, return false
         if (this.validValue(i, j, this.board[i][j].getValue()) == false){
 
           return false;
@@ -206,20 +210,59 @@ public class Board{
   return true;
   }
 
-  //Check this tomorrow!
+  //Check this tomorrow! Use recursion?
   public void randomLock(int locked){
 
+
+    //Create new random object
     Random ran = new Random();
 
-    for (int i = 0; i < locked - 1; i++){
 
+    //for loop to create n number of random locked values passed by user
+    for (int i = 0; i < locked; i++){
+
+      //Create two random points
       int x = ran.nextInt(9);
       int y = ran.nextInt(9);
-      int val = this.board[x][y].getValue();
+
+      //Create random value
+      int val = ran.nextInt(9);
+
+      //Set the value and locked to the cell
       this.set(x, y, val, true);
+
+      //Check to make sure the value passed is valid
+      if (this.validValue(x, y, val) == false){
+
+        //Create variable to track if cell is valid or not
+        boolean invalid = true;
+
+        //While loop  to keep creating values until the cell is valid
+        while (invalid){
+
+          //Create a new random value
+          val = ran.nextInt(9);
+
+          //Assign new value to cell
+          this.set(x,y,val,true);
+
+          //Check again if cell is valid or not
+          if (this.validValue(x,y,val) == true){
+
+            //If valid, set invalid to false
+            invalid = false;
+          }
+
+        }
+      }
     }
+  }
 
 
+  //Finds and returns the next cell to check
+  public Cell findNextCell(){
+
+    
   }
 
   //Reads file and prints out board
@@ -281,11 +324,15 @@ public class Board{
 
   	Board board = new Board();
 
-    board.read(argv[0]);
+    // board.read(argv[0]);
+
+    // System.out.println(board);
+
+    // System.out.println(board.validSolution());
+
+    board.randomLock(5);
 
     System.out.println(board);
-
-    System.out.println(board.validSolution());
 
   }
 
