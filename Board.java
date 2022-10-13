@@ -261,7 +261,36 @@ public class Board{
   //Finds and returns the next cell to check
   public Cell findNextCell(){
 
-    
+    //Loop through all cells starting at the top left
+    for (int i = 0; i < this.SIZE; i++){
+
+      for (int j = 0; j < this.SIZE; j++){
+
+        //If the cell has a value of 0
+        if (this.value(i, j) == 0){
+
+          //Loop through values 1-9 to see if any work
+          for (int x = 1; x < 10; x++){
+
+            //Create boolean to check if value is valid
+            boolean check = this.validValue(i, j, x);
+
+            //
+            if (check == true){
+
+              this.set(i, j, x);
+              return this.board[i][j];
+
+            }
+
+            else{
+
+              return null;
+            }
+          }
+        }
+      }
+    }return null;
   }
 
   //Reads file and prints out board
