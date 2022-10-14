@@ -46,16 +46,17 @@ public class Sudoku{
 
 			//    push the cell onto the stack
 				stack.push(checkCell);
-			//         update the board TODO: Figure out how to update board
-
+			//         update the board TODO: Naser said to update board as in this.board[i][j].setValue()
 			}
 			//     else
 			else{
 
 			//         while it is possible to backtrack (if the stack is nonempty)
 				while (stack.size != 0){
+
 			//             pop a cell off the stack
 					stack.pop();
+
 			//             check if there are other untested values this cell could try
 					for (int i = 1; i < 10; i++){
 
