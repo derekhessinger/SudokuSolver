@@ -298,12 +298,9 @@ public class Board{
               return this.board[i][j];
 
             }
-
-            // else{
-
-            //   return null;
-            // }
+            // return null;
           }
+          return null;
         }
       }
     }return null;
@@ -390,15 +387,21 @@ public class Board{
 
     // System.out.println(board.validSolution());
 
-    board.randomLock(5);
+    board.randomLock(15);
 
     System.out.println(board);
 
-    Cell cell;
+    Cell cell1;
 
-    cell = board.findNextCell();
+    cell1 = board.findNextCell();
 
-    System.out.println(cell);
+    System.out.println(cell1);
+
+    Cell cell2;
+
+    cell2 = board.findNextCell();
+
+    System.out.println(cell2);
 
   }
 
