@@ -5,6 +5,22 @@
 *10/4/22
 */
 
+
+//TODO: remove unnecessary packages
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
 public class Cell{
 
 	int rowIDX;
@@ -59,6 +75,12 @@ public class Cell{
 
 	public String toString(){
 		return "" + val;
+	}
+
+	public void draw(Graphics g, int x, int y, int scale){
+    char toDraw = (char) ((int) '0' + getValue());
+    g.setColor(isLocked()? Color.BLUE : Color.RED);
+    g.drawChars(new char[] {toDraw}, 0, 1, x, y);
 	}
 
 }

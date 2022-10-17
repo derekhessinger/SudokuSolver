@@ -10,11 +10,27 @@ import java.io.BufferedReader;
 import java.io.*;
 import java.util.Random;
 
+//TODO: remove unnecessary packages
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
 public class Board{
 
   //Fields for Board
   private Cell[][] board;
   public static final int SIZE = 9;
+  public Boolean finished;
 
   public Board(){
 
@@ -283,10 +299,10 @@ public class Board{
 
             }
 
-            else{
+            // else{
 
-              return null;
-            }
+            //   return null;
+            // }
           }
         }
       }
@@ -348,6 +364,22 @@ public class Board{
     return false;
   }
 
+  public void draw(Graphics g, int scale){
+    for(int i = 0; i<9; i++){
+        for(int j = 0; j<9; j++){
+            board[i][j].draw(g, j*scale+5, i*scale+10, scale);
+        }
+    } if(finished){
+        if(validSolution()){
+            g.setColor(new Color(0, 127, 0));
+            g.drawChars("Hurray!".toCharArray(), 0, "Hurray!".length(), scale*3+5, scale*10+10);
+        } else {
+            g.setColor(new Color(127, 0, 0));
+            g.drawChars("No solution!".toCharArray(), 0, "No Solution!".length(), scale*3+5, scale*10+10);
+        }
+    }
+}
+
   public static void main(String[] argv){
 
   	Board board = new Board();
@@ -361,6 +393,12 @@ public class Board{
     board.randomLock(5);
 
     System.out.println(board);
+
+    Cell cell;
+
+    cell = board.findNextCell();
+
+    System.out.println(cell);
 
   }
 
