@@ -138,12 +138,12 @@ public class Sudoku{
 	 //  	System.out.println(sudoku.solve(0));
 
 		for (int i = 0; i < 75; i++){
-			sudoku.build(20);
+			sudoku.build(10);
 			System.out.print(sudoku.solve(0));
 			if (sudoku.gameBoard.finished)
 				count++;
 		}
-		System.out.print(count);
+		System.out.println(count);
 
 
 	}
