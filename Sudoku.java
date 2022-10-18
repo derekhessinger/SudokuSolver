@@ -13,54 +13,55 @@ public class Sudoku{
 	//Fields for Sudoku class
 	Board gameBoard;
 	LandscapeDisplay ld;
-	Boolean finished;
+
+	//Constructor, creates board with no pre-determined values
+	public Sudoku(){
+
+		//Create board
+		this.gameBoard = new Board();
+
+		//Create LandscapeDisplay
+		// this.ld = new LandscapeDisplay(gameBoard);
+	}
 
 	//Constructor, creates board with pre-determined randomly placed values
 	public Sudoku(int numLocked){
 
 		//Create board
-		this.gameBoard = new Board();
-
-		//Randomly lock 9 values
-		this.gameBoard.randomLock(numLocked);
+		this.gameBoard = new Board(numLocked);
 
 		//Create LandscapeDisplay
-		//this.ld = new LandscapeDisplay(gameBoard);
+		this.ld = new LandscapeDisplay(gameBoard);
 	}
 
-	public boolean solve(int delay){
+	//build method to automate simulations
+	public void build(int numLocked){
+
+		gameBoard = new Board(numLocked);
+	}
+
+
+	public boolean solve(int delay) throws InterruptedException{
 
 		// Allocate a stack, initially empty
 		CellStack<Cell> stack = new CellStack<Cell>();
 
 		boolean backtrack = false;
 
+		gameBoard.finished = false;
+
 		// While the stack size is less than the number of unspecified cells
 		while (stack.size < (this.gameBoard.SIZE*this.gameBoard.SIZE - this.gameBoard.numLocked())){
 
-			if (delay > 0){
-
-				try{
-
-     			Thread.sleep(delay);
-
-     			}
-
-     			catch(InterruptedException ex){
-
-     				System.out.println("Interrupted");
-     			}
-			}
-
-			 if (ld != null){
-
-			    ld.repaint();
-			}
+			if (delay > 0)
+    			Thread.sleep(delay);
+			// if (ld != null)
+   // 			 ld.repaint();
 
 			//Select the next cell to check (you'll be calling findNextCell, described below)
 			Cell checkCell = this.gameBoard.findNextCell();
 
-			System.out.println(checkCell);
+			// System.out.println();
 
 			// Variable to hold values being checked
 			int validVal = 0;
@@ -100,13 +101,12 @@ public class Sudoku{
 							backtrack = false;
 							break;
 						}
+					}
 
-						if(backtrack == true){
+					if(backtrack == true){
 
-							validVal = 0;
-							this.gameBoard.set(popped.getRow(), popped.getCol(), validVal);
-
-						}
+						validVal = 0;
+						this.gameBoard.set(popped.getRow(), popped.getCol(), validVal);
 					}
 				}
 
@@ -130,15 +130,21 @@ public class Sudoku{
 		return gameBoard.toString();
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 
-		Sudoku sudoku = new Sudoku(0);
+		int count = 0;
+		Sudoku sudoku = new Sudoku();
 
-		System.out.println("ORIGINAL BOARD:");
-	  	System.out.println(sudoku);
+	 //  	System.out.println(sudoku.solve(0));
+
+		for (int i = 0; i < 75; i++){
+			sudoku.build(20);
+			System.out.print(sudoku.solve(0));
+			if (sudoku.gameBoard.finished)
+				count++;
+		}
+		System.out.print(count);
 
 
-	  	//TODO: Fix interrupted exception
-	  	System.out.println(sudoku.solve(10));
 	}
 }

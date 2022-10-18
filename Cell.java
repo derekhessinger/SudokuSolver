@@ -90,9 +90,10 @@ public class Cell{
 
 	//Draw method
 	public void draw(Graphics g, int x, int y, int scale){
-    char toDraw = (char) ((int) '0' + getValue());
-    g.setColor(isLocked()? Color.BLUE : Color.RED);
-    g.drawChars(new char[] {toDraw}, 0, 1, x, y);
+
+	    char toDraw = (char) ((int) '0' + getValue());
+	    g.setColor(isLocked()? Color.BLUE : Color.RED);
+	    g.drawChars(new char[] {toDraw}, 0, 1, x, y);
 	}
 
 	public static void main(String[] args){

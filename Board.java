@@ -47,6 +47,48 @@ public class Board{
     }
   }
 
+    public Board(int locked){
+
+    //Create 2D array of cells that is board.size x board.size
+    this.board = new Cell[Board.SIZE][Board.SIZE];
+
+    //For loop to set each of the cells to 0
+    for (int i = 0; i < Board.SIZE; i++){
+
+      for (int j = 0; j < Board.SIZE; j++){
+
+        this.board[i][j] = new Cell(i,j, 0);
+      }
+    }
+
+    //Counter to keep track of number of locked cells
+    int counter = 0;
+
+    //Create random object
+    Random ran = new Random();
+
+    while (counter < locked){
+
+      int ranX = ran.nextInt(1,9);
+      int ranY = ran.nextInt(1,9);
+
+      if (!this.board[ranX][ranY].isLocked()){
+
+        int ranVal = ran.nextInt(1,9);
+
+        if (ranVal != 0){
+          
+          if (this.validValue(ranX, ranY, ranVal)){
+
+            this.board[ranX][ranY].setValue(ranVal);
+            this.board[ranX][ranY].setLocked(true);
+            counter += 1;
+          }
+        }
+      }
+    }
+  }
+
     public String toString(){
 
       //Initialize string
@@ -226,53 +268,6 @@ public class Board{
   return true;
   }
 
-  //Creates n locked values specified by user with random values generated
-  public void randomLock(int locked){
-
-
-    //Create new random object
-    Random ran = new Random();
-
-
-    //for loop to create n number of random locked values passed by user
-    for (int i = 0; i < locked; i++){
-
-      //Create two random points
-      int x = ran.nextInt(9);
-      int y = ran.nextInt(9);
-
-      //Create random value
-      int val = ran.nextInt(9);
-
-      //Set the value and locked to the cell
-      this.set(x, y, val, true);
-
-      //Check to make sure the value passed is valid
-      if (this.validValue(x, y, val) == false){
-
-        //Create variable to track if cell is valid or not
-        boolean invalid = true;
-
-        //While loop  to keep creating values until the cell is valid
-        while (invalid){
-
-          //Create a new random value
-          val = ran.nextInt(9);
-
-          //Assign new value to cell
-          this.set(x,y,val,true);
-
-          //Check again if cell is valid or not
-          if (this.validValue(x,y,val) == true){
-
-            //If valid, set invalid to false
-            invalid = false;
-          }
-        }
-      }
-    }
-  }
-
 
   //Finds and returns the next cell to check
   public Cell findNextCell(){
@@ -298,7 +293,6 @@ public class Board{
               return this.board[i][j];
 
             }
-            // return null;
           }
           return null;
         }
@@ -361,25 +355,26 @@ public class Board{
     return false;
   }
 
+  //Draw method
   public void draw(Graphics g, int scale){
-    for(int i = 0; i<9; i++){
-        for(int j = 0; j<9; j++){
-            board[i][j].draw(g, j*scale+5, i*scale+10, scale);
-        }
-    } if(finished){
-        if(validSolution()){
-            g.setColor(new Color(0, 127, 0));
-            g.drawChars("Hurray!".toCharArray(), 0, "Hurray!".length(), scale*3+5, scale*10+10);
-        } else {
-            g.setColor(new Color(127, 0, 0));
-            g.drawChars("No solution!".toCharArray(), 0, "No Solution!".length(), scale*3+5, scale*10+10);
-        }
-    }
-}
+      for(int i = 0; i<9; i++){
+          for(int j = 0; j<9; j++){
+              board[i][j].draw(g, j*scale+5, i*scale+10, scale);
+          }
+      } if(finished){
+          if(validSolution()){
+              g.setColor(new Color(0, 127, 0));
+              g.drawChars("Hurray!".toCharArray(), 0, "Hurray!".length(), scale*3+5, scale*10+10);
+          } else {
+              g.setColor(new Color(127, 0, 0));
+              g.drawChars("No solution!".toCharArray(), 0, "No Solution!".length(), scale*3+5, scale*10+10);
+          }
+      }
+  }
 
   public static void main(String[] argv){
 
-  	Board board = new Board();
+  	Board board = new Board(20);
 
     // board.read(argv[0]);
 
@@ -387,21 +382,19 @@ public class Board{
 
     // System.out.println(board.validSolution());
 
-    board.randomLock(15);
-
     System.out.println(board);
 
-    Cell cell1;
+    // Cell cell1;
 
-    cell1 = board.findNextCell();
+    // cell1 = board.findNextCell();
 
-    System.out.println(cell1);
+    // System.out.println(cell1);
 
-    Cell cell2;
+    // Cell cell2;
 
-    cell2 = board.findNextCell();
+    // cell2 = board.findNextCell();
 
-    System.out.println(cell2);
+    // System.out.println(cell2);
 
   }
 
