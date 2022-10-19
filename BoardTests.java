@@ -130,5 +130,47 @@ public class BoardTests{
 			System.out.println("Testing complete!");
 			System.out.println("");
 		}
+
+		// case 7: testing value()
+		{
+			System.out.println("TESTING: value()");
+
+			// setup
+			Board board = new Board();
+
+			// verify
+			System.out.println(board.value(0,0) + " == 0");
+
+			// test
+			assert board.value(0,0) == 0 : "Error in Board::value()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 8: testing set()
+		{
+			System.out.println("TESTING: set()");
+
+			// setup
+			Board board = new Board();
+			board.set(0, 0, 5, true);
+
+			// verify
+			System.out.println(board.value(0,0) + " == 5");
+			System.out.println(board.isLocked(0,0) + " == true");
+
+			// test
+			assert board.value(0,0) == 5 : "Error in Board::set()";
+			assert board.isLocked(0,0) == true : "Error in Board::set()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 9: testing validValue()
+		{
+			System.out.println("TESTING: validValue()");
+		}
 	}
 }

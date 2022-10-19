@@ -40,13 +40,6 @@ public class CellStack<T>{
 
 	int size; //number of items in stack
 
-
-	//Dont this this is needed for CellStack Class
-	/*public Cell getCell(){
-	*	return cell;
-	*}
-	*/
-
 	public CellStack(){
 
 		this.head = null;
