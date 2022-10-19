@@ -135,10 +135,10 @@ public class Sudoku{
 		int count = 0;
 		Sudoku sudoku = new Sudoku();
 
-	 //  	System.out.println(sudoku.solve(0));
+	  	// System.out.println(sudoku.solve(10));
 
 		for (int i = 0; i < 75; i++){
-			sudoku.build(10);
+			sudoku.build(20);
 			System.out.print(sudoku.solve(0));
 			if (sudoku.gameBoard.finished)
 				count++;
