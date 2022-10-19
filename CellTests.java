@@ -1,59 +1,189 @@
-public class CellTests {
-    
-    public static void main(String[] args){
-        // case 1: Constructor
-        {
-            // setup
-            Cell c1 = new Cell();
-            Cell c2 = new Cell(1, 2, 3);
-            Cell c3 = new Cell(1, 2, 3, true);
+/*
+*File: CellTests.java
+*Derek Hessinger
+*CS231
+*10/18/22
+*/
 
-            // verify
-            System.out.println(c1);
-            System.out.println(c2);
-            System.out.println(c3);
+public class CellTests{
 
-            // test
-            assert c1!=null : "Error in Cell::Cell()";
-            assert c2!=null : "Error in Cell::Cell()";
-            assert c3!=null : "Error in Cell::Cell()";
-        }
+	public static void main(String[] args){
 
-        // case 2: value
-        {
-            // setup
-            Cell c1 = new Cell();
-            Cell c2 = new Cell(1, 2, 3);
-            Cell c3 = new Cell(1, 2, 3, true);
+		// case 1: testing Cell()
+		{
+			System.out.println("TESTING: Cell()");
 
-            // verify
-            System.out.println(c1.getValue() + " == 0");
-            System.out.println(c2.getValue() + " == 3");
-            System.out.println(c3.getValue() + " == 3");
+			// setup
+			Cell cell1 = new Cell();
 
-            // test
-            assert c1.getValue() == 0 : "Error in Cell::Cell()";
-            assert c2.getValue() == 3 : "Error in Cell::Cell()";
-            assert c3.getValue() == 3 : "Error in Cell::Cell()";
-        }
+			// verify
+			System.out.println(cell1.rowIDX + " == 0");
+			System.out.println(cell1.colIDX + " == 0");
+			System.out.println(cell1.val + " == 0");
+			System.out.println(cell1.valLock + " == false");
 
-        // case 3: locked
-        {
-            // setup
-            Cell c1 = new Cell();
-            Cell c2 = new Cell(1, 2, 3);
-            Cell c3 = new Cell(1, 2, 3, true);
+			// test
+			assert cell1.rowIDX == 0 : "Error in Cell::Cell()";
+			assert cell1.colIDX == 0 : "Error in Cell::Cell()";
+			assert cell1.val == 0 : "Error in Cell::Cell()";
+			assert cell1.valLock == false : "Error in Cell::Cell()";
 
-            // verify
-            System.out.println(c1.isLocked() + " == false");
-            System.out.println(c2.isLocked() + " == false");
-            System.out.println(c3.isLocked() + " == true");
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
 
-            // test
-            assert c1.isLocked() == false : "Error in Cell::Cell()";
-            assert c2.isLocked() == false : "Error in Cell::Cell()";
-            assert c3.isLocked() == true : "Error in Cell::Cell()";
-        }
-    }
+		// case 2: testing Cell(int row, int col, int value)
+		{
+			System.out.println("TESTING: Cell(int row, int col, int value)");
 
+			// setup
+			Cell cell1 = new Cell(1, 1, 1);
+
+			// verify
+			System.out.println(cell1.rowIDX + " == 1");
+			System.out.println(cell1.colIDX + " == 1");
+			System.out.println(cell1.val + " == 1");
+			System.out.println(cell1.valLock + " == false");
+
+			// test
+			assert cell1.rowIDX == 1 : "Error in Cell::Cell()";
+			assert cell1.colIDX == 1 : "Error in Cell::Cell()";
+			assert cell1.val == 1 : "Error in Cell::Cell()";
+			assert cell1.valLock == false : "Error in Cell::Cell()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 3: testing Cell(int row, int col, int value, boolean locked)
+		{
+			System.out.println("TESTING: Cell(int row, int col, int value, boolean locked");
+
+			// setup
+			Cell cell1 = new Cell(1, 1, 1, true);
+
+			// verify
+			System.out.println(cell1.rowIDX + " == 1");
+			System.out.println(cell1.colIDX + " == 1");
+			System.out.println(cell1.val + " == 1");
+			System.out.println(cell1.valLock + " == true");
+
+			// test
+			assert cell1.rowIDX == 1 : "Error in Cell::Cell()";
+			assert cell1.colIDX == 1 : "Error in Cell::Cell()";
+			assert cell1.val == 1 : "Error in Cell::Cell()";
+			assert cell1.valLock == true : "Error in Cell::Cell()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 4: testing getRow()
+		{
+			System.out.println("TESTING: getRow()");
+
+			// setup
+			Cell cell1 = new Cell(1, 1, 1, true);
+
+			// verify
+			System.out.println(cell1.getRow() + " == 1");
+
+			// test
+			assert cell1.getRow() == 1 : "Error in Cell::getRow()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 5: testing getCol()
+		{
+			System.out.println("TESTING: getCol()");
+
+			// setup
+			Cell cell1 = new Cell(1, 1, 1, true);
+
+			// verify
+			System.out.println(cell1.getCol() + " == 1");
+
+			// test
+			assert cell1.getCol() == 1 : "Error in Cell::getCol()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 6: testing getValue()
+		{
+			System.out.println("TESTING: getValue()");
+
+			// setup
+			Cell cell1 = new Cell(1, 1, 1, true);
+
+			// verify
+			System.out.println(cell1.getValue() + " == 1");
+
+			// test
+			assert cell1.getValue() == 1 : "Error in Cell::getValue()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 7: testing setValue()
+		{
+			System.out.println("TESTING: setValue()");
+
+			// setup
+			Cell cell1 = new Cell();
+			cell1.setValue(2);
+
+			// verify
+			System.out.println(cell1.getValue() + " == 2");
+
+			// test
+			assert cell1.getValue() == 2 : "Error in Cell::setValue()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 8: testing isLocked()
+		{
+			System.out.println("TESTING: isLocked()");
+
+			// setup
+			Cell cell1 = new Cell(1, 1, 1, true);
+
+			// verify
+			System.out.println(cell1.isLocked() + " == true");
+
+			// test
+			assert cell1.isLocked() == true : "Error in Cell::isLocked()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 9: testing setLocked()
+		{
+			System.out.println("TESTING: setLocked()");
+
+			// setup
+			Cell cell1 = new Cell();
+			cell1.setLocked(true);
+
+			// verify
+			System.out.println(cell1.isLocked() + " == true");
+
+			// test
+			assert cell1.isLocked() == true : "Error in Cell::setLocked()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+
+			System.out.println("***TESTING FINSIHED FOR: Cell.java***");
+		}
+
+
+	}
 }

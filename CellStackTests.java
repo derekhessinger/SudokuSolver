@@ -1,76 +1,97 @@
 /*
-* File: CellStackTests.java
-* Derek Hessinger
-* CS231
-* 10/9/22
+*File: CellStackTests.java
+*Derek Hessinger
+*CS231
+*10/18/22
 */
 
+public class CellStackTests{
 
-public class CellStackTests {
+	public static void main(String[] args){
 
-    public static void main(String[] args){
-        // case 1: Constructor
-        {
-            // setup
-            CellStack stack = new CellStack();
+		// case 1: testing CellStack()
+		{
+			System.out.println("TESTING: CellStack()");
 
-            // verify
-            System.out.println(stack);
+			// setup
+			CellStack cs = new CellStack();
 
-            // test
-            assert stack != null : "Error in CellStack::CellStack()";
-        }
+			// verify
+			System.out.println(cs.head + " == null");
+			System.out.println(cs.size + " == 0");
 
-        // case 2: push()
-        {
-            // setup
-            CellStack stack = new CellStack();
-            for(int i = 0; i < 5; i++){
-                stack.push(new Cell());
-            }
+			// test
+			assert cs.head == null : "Error in CellStack::CellStack()";
+			assert cs.size == 0 : "Error in CellStack::CellStack()";
 
-            // verify
-            System.out.println(stack.size() + " == 5");
-            
-            // test
-            assert stack.size() == 5 : "Error in CellStack::push()";
-        }
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
 
-        // case 3: peek()
-        {
-            // setup
-            CellStack stack = new CellStack();
-            for(int i = 1; i < 5; i++){
-                stack.push(new Cell(i, i, i));
-            }
-            Cell peek = stack.peek();
+		// case 2: testing push()
+		{
+			System.out.println("TESTING: push()");
 
-            // verify
-            System.out.println(peek.getValue() + " == 4");
-            System.out.println(stack.size() + " == 4");
+			// setup
+			CellStack cs = new CellStack();
+			Cell cell = new Cell();
+			cs.push(cell);
 
-            // test
-            assert peek.getValue() == 4 : "Error in CellStack::peek()"; 
-            assert stack.size() == 4 : "Error in CellStack::peek()";
-        }
+			// verify 
+			System.out.println(cs.size + " == 1");
 
-        // case 4: pop()
-        {
-            // setup
-            CellStack stack = new CellStack();
-            for(int i = 1; i < 5; i++){
-                stack.push(new Cell(i, i, i));
-            }
-            Cell pop = stack.pop();
+			// test 
+			assert cs.size == 1 : "Error in CellStack::push()";
 
-            // verify
-            System.out.println(pop.getValue() + " == 4");
-            System.out.println(stack.size() + " == 3");
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
 
-            // test
-            assert pop.getValue() == 4 : "Error in CellStack::pop()"; 
-            assert stack.size() == 3 : "Error in CellStack::pop()";
-        }
-    }
+		// case 3: testing peek()
+		{
+			System.out.println("TESTING: peek()");
 
+			// setup
+			CellStack cs = new CellStack();
+			Cell cell = new Cell();
+			cs.push(cell);
+
+			// verify
+			System.out.println(cs.peek() + " == 0");
+
+			// test
+			assert cs.peek() == cell : "Error in CellStack::peek()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 4: testing pop()
+		{
+			System.out.println("TESTING: pop()");
+
+			// setup
+			CellStack cs = new CellStack();
+			Cell cell1 = new Cell();
+			Cell cell2 = new Cell();
+			Cell cell3 = new Cell();
+			cs.push(cell1);
+			cs.push(cell2);
+			cs.push(cell3);
+			Cell popped = cs.pop();
+
+			// verify
+			System.out.println(cs.size + " == 2");
+			System.out.println(popped + " == 0");
+
+			// test
+			assert cs.size == 2 : "Error in CellStack::pop()";
+			assert popped == cell3 : "Error in CellStack::pop()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+
+			System.out.println("***TESTING FINSIHED***");			
+		}
+	}
 }
