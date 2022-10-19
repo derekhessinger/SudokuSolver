@@ -89,6 +89,12 @@ public class Board{
     }
   }
 
+  //Returns type
+  public String getType(){
+
+    return "Board";
+  }
+
     public String toString(){
 
       //Initialize string
