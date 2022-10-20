@@ -390,6 +390,8 @@ public class Board{
 
     System.out.println(board);
 
+    System.out.println(board.findNextCell());
+
     // Cell cell1;
 
     // cell1 = board.findNextCell();

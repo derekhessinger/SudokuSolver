@@ -2,7 +2,7 @@
 * File : BoardTests.java
 * Derek Hessinger
 * CS231
-* 10/9/22
+* 10/19/22
 */
 
 public class BoardTests{
@@ -171,6 +171,61 @@ public class BoardTests{
 		// case 9: testing validValue()
 		{
 			System.out.println("TESTING: validValue()");
+
+			// setup
+			Board board1 = new Board();
+			Board board2 = new Board();
+			Board board3 = new Board();
+			Board board4 = new Board();
+			board2.set(0,1,1);
+			board3.set(1,0,1);
+			board4.set(3,3,1);
+
+			// test
+			System.out.println(board1.validValue(0,0,1) + " == true");
+			System.out.println(board2.validValue(0,0,1) + " == false");
+			System.out.println(board3.validValue(0,0,1) + " == false");
+			System.out.println(board4.validValue(0,0,1) + " == false");
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 11: testing findNextCell()
+		{
+			System.out.println("TESTING: findNextCell()");
+
+			// setup
+			Board board = new Board();
+
+			// verify
+			System.out.print(board.findNextCell() + " == 1");
+
+			// test
+			assert board.findNextCell() == board.findNextCell() : "Error in Board::findNextCell()";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+		}
+
+		// case 10: testing validSolution()
+		// I put this test last because it may take awhile for the board to come up with a random solved board
+		{
+			System.out.println("TESTING: validSolution()");
+
+			// setup
+			Board board1 = new Board(81);
+
+			// verify
+			System.out.println(board1.validSolution() + " == true");
+
+			// test
+			assert board1.validSolution() == true : "Error in Board::validSolution";
+
+			System.out.println("Testing complete!");
+			System.out.println("");
+
+			System.out.println("***TESTING FOR BOARD COMPLETE***");
 		}
 	}
 }

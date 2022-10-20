@@ -34,6 +34,11 @@ public class Sudoku{
 		this.ld = new LandscapeDisplay(gameBoard);
 	}
 
+	public String getType(){
+
+		return "Sudoku";
+	}
+
 	//build method to automate simulations
 	public void build(int numLocked){
 
@@ -138,6 +143,7 @@ public class Sudoku{
 	  	// System.out.println(sudoku.solve(10));
 
 		for (int i = 0; i < 75; i++){
+
 			sudoku.build(20);
 			System.out.print(sudoku.solve(0));
 			if (sudoku.gameBoard.finished)
