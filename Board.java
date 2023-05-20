@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.*;
 import java.util.Random;
 
-//TODO: remove unnecessary packages
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;

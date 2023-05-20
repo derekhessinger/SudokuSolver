@@ -1,17 +1,16 @@
 /*
-*CellStack.java
+*File: CellStack.java
 *Derek Hessinger
 *CS231
-*10/4/22
+*10/26/22
 */
 
 public class CellStack<T>{
 
+	// Node class 
 	private class Node{
 		Cell cell;
 		Node next;
-
-		//same ideas from last week
 
 		public Node(Cell cell){
 	      this.cell = cell;
@@ -40,23 +39,15 @@ public class CellStack<T>{
 
 	int size; //number of items in stack
 
+	// Constructor for CellStack
 	public CellStack(){
 
 		this.head = null;
 		this.size = 0;
 	}
-
-	//Dont think this is necessary for constructor
-	/*public CellStack(Node head, int size){
-	*
-	*	this.head = head;
-	*	this.size = size;
-	*}
-	*/
 	
+	// Pushes cell c onto the stack
 	public void push(Cell c){
-
-		//should look very similiar to an add method for linked list
 
 		//Make new node to store data`
     	Node newNode = new Node(c);
@@ -68,11 +59,13 @@ public class CellStack<T>{
 		size++;
 	}
 
+	// Returns the cell at the top of the stack
 	public Cell peek(){
 
 		return head.getCell();
 	}
 
+	// Removes the cell at the top of the stack and returns it
 	public Cell pop(){
 
 		Node deleted = head;
@@ -81,11 +74,13 @@ public class CellStack<T>{
     	return deleted.getCell();
 	}
 
+	// Returns the size of the stack
 	public int size(){
 
 		return this.size;
 	}
 
+	// Returns if the cell is empty
 	public boolean empty(){
 		if (size == 0){
 			return true;
@@ -94,5 +89,4 @@ public class CellStack<T>{
 			return false;
 		}
 	}
-
 }
